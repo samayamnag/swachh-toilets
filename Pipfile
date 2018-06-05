@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+python-decouple = "*"
+"django-2.0" = {git = "https://github.com/MongoEngine/django-mongoengine.git"}
+unipath = "*"
+"flake8" = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

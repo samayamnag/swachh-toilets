@@ -14,18 +14,17 @@ import os
 import sys
 from unipath import Path
 from decouple import config
-from mongoengine import connect
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = Path(__file__).parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 APP_ENV = config('APP_ENV', default='production')
 APP_NAME = config('APP_NAME', default='Swachh Munch')
+APP_URL = config('APP_URL', default='http://swachhtoilets.swachhmanch.in/')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('APP_SECRET_KEY')
@@ -49,6 +48,8 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'django_mongoengine',
+    'rest_framework',
+    'rest_framework_mongoengine'
 )
 
 LOCAL_APPS = (
@@ -105,7 +106,7 @@ MONGODB_DATABASES = {
         "host": config('MONGO_DB_HOST', default='localhost'),
         "password": config('MONGO_DB_PASSWORD', default=''),
         "username": config('MONGO_DB_USERNAME', default=''),
-        "tz_aware": True, # if you using timezones in django (USE_TZ = True),
+        "tz_aware": True,  # if you using timezones in django (USE_TZ = True),
     },
 }
 
@@ -155,3 +156,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_API_URL = config('AUTH_API_URL', default="http://auth.swachhmanch.in/")
+PROFILE_API_URL = config(
+                'PROFILE_API_URL',
+                default="http://profile.swachhmanch.in/"
+                )
+
+# REST API
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'swachh_toilets.api.authentication.CustomAuthentication',
+    )
+}

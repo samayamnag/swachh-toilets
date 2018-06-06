@@ -9,6 +9,10 @@ python-decouple = "*"
 "django-2.0" = {git = "https://github.com/MongoEngine/django-mongoengine.git"}
 unipath = "*"
 "flake8" = "*"
+djangorestframework = "*"
+django-rest-framework-mongoengine = "*"
+geopy = "*"
+requests = "*"
 
 [dev-packages]
 
